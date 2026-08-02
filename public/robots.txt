@@ -1,0 +1,9 @@
+# Robots.txt for Portfolio Site
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://username.github.io/sitemap-index.xml
+
+# Disallow admin
+Disallow: /admin/

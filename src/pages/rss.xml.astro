@@ -1,0 +1,34 @@
+---
+import rss from '@astrojs/rss';
+import { getProjects, getExperience } from '../utils/data';
+
+export async function GET(context) {
+  const projects = getProjects();
+  const experience = getExperience();
+
+  const items = [
+    ...projects.map(project => ({
+      title: project.title,
+      link: `/projects/${project.slug}`,
+      description: project.description,
+      pubDate: new Date(project.startDate + '-01'),
+      categories: project.stack,
+    })),
+    ...experience.map(job => ({
+      title: `${job.role} at ${job.company}`,
+      link: '/experience',
+      description: job.highlights.join('. '),
+      pubDate: new Date(job.startDate + '-01'),
+      categories: job.skills,
+    })),
+  ];
+
+  return rss({
+    title: 'Portfolio Updates',
+    description: 'Latest projects and professional updates',
+    site: context.site,
+    items: items.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime()),
+    customData: `<language>en-us</language>`,
+  });
+}
+---

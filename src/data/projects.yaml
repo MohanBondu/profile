@@ -1,0 +1,119 @@
+projects:
+  - slug: "system-security-resiliency-publisher"
+    title: "System Security Resiliency Publisher"
+    description: "Intelligent publication of resiliency score for cyber attacks on IT systems using Kali Linux recon tools and ExploitDB with GPT-3.5"
+    longDescription: |
+      Developed an initial PoC for intelligent publication of resiliency score for cyber attacks on IT systems. 
+      The system uses data fetched from reconnaissance tools of Kali Linux and ExploitDB for generating prompts 
+      to GPT-3.5 to generate exploitation scripts for underlying system vulnerabilities with an attack 
+      compromise rate of 74%.
+      
+      **Key Features:**
+      - Automated vulnerability discovery using Kali Linux recon tools
+      - Integration with ExploitDB for exploit matching
+      - LLM-powered exploitation script generation
+      - Resiliency scoring for IT systems
+    stack: ["Python", "LLM", "Bash", "ExploitDB", "Kali Linux"]
+    github: "https://github.com/mohanbondu/security-resiliency-publisher"
+    demo: "https://mohanbondu.github.io/security-resiliency-publisher"
+    image: "/assets/projects/security-resiliency.jpg"
+    featured: true
+    status: "published"
+    startDate: "2024-01"
+  - slug: "change-risk-forecaster"
+    title: "Change Risk Forecaster for IT Systems"
+    description: "PoC to evaluate risk of code changes by analyzing network call traces across distributed systems"
+    longDescription: |
+      Created an initial Proof of Concept to evaluate the risk of code changes by analyzing network call traces 
+      across distributed systems and tracking data propagation throughout the entire process. This framework 
+      would help in process efficiency of release management process.
+      
+      **Key Features:**
+      - Network call trace analysis across distributed systems
+      - Data propagation tracking
+      - Change risk assessment for release management
+      - Process efficiency improvement
+    stack: ["Angular", "Spring Boot", "FastAPI", "Deep Learning"]
+    github: "https://github.com/mohanbondu/change-risk-forecaster"
+    demo: "https://mohanbondu.github.io/change-risk-forecaster"
+    image: "/assets/projects/change-risk-forecaster.jpg"
+    featured: true
+    status: "published"
+    startDate: "2024-03"
+  - slug: "equity-pricing-engine-automation"
+    title: "Equity Pricing Engine Automation"
+    description: "Automated time-sensitive pre-requisite manual processes achieving ~6 hours gain per day with ZTP"
+    longDescription: |
+      Automated time-sensitive pre-requisite manual processes as part of the Equity Pricing Engine, ensuring 
+      Zero Touch Processing (ZTP) and achieving a gain of approximately 6 hours per day.
+      
+      **Key Achievements:**
+      - ZTP implementation for time-sensitive processes
+      - ~6 hours per day efficiency gain
+      - Production support enhancement for PnL metrics
+    stack: ["Java", "Spring Boot", "WebFlux", "Django", "Python"]
+    github: "https://github.com/mohanbondu/equity-pricing-automation"
+    demo: "https://mohanbondu.github.io/equity-pricing-automation"
+    image: "/assets/projects/equity-pricing.jpg"
+    featured: false
+    status: "published"
+    startDate: "2023-07"
+  - slug: "microservices-migration"
+    title: "Monolithic to Microservices Migration"
+    description: "Migrated application from monolithic architecture to Microservices with Netflix Eureka and API Gateway"
+    longDescription: |
+      Migrated application from monolithic architecture to Microservices, utilizing Netflix Eureka for Service 
+      Discovery and an API Gateway for centralized routing, thereby increasing fault tolerance by 90%.
+      
+      **Key Achievements:**
+      - 90% increase in fault tolerance
+      - Netflix Eureka for Service Discovery
+      - API Gateway for centralized routing
+      - WebFlux for reactive programming (80% reduction in server resource consumption)
+    stack: ["Java", "Spring Boot", "WebFlux", "Netflix Eureka", "API Gateway", "Docker", "Kubernetes"]
+    github: "https://github.com/mohanbondu/microservices-migration"
+    demo: "https://mohanbondu.github.io/microservices-migration"
+    image: "/assets/projects/microservices.jpg"
+    featured: true
+    status: "published"
+    startDate: "2023-08"
+  - slug: "event-tracking-framework"
+    title: "Generic Event Tracking Framework"
+    description: "Automatic scheduled process tracking reducing manual debugging efforts by 70%"
+    longDescription: |
+      Designed and executed a generic Event Tracking Framework for automatic scheduled processes, reducing 
+      manual efforts by 70% for debugging and identifying production anomaly root causes, avoiding the 
+      usage of conventional log viewing process, using Spring AOP.
+      
+      **Key Achievements:**
+      - 70% reduction in manual debugging efforts
+      - Automatic scheduled process tracking
+      - Spring AOP implementation
+      - Production anomaly root cause identification
+    stack: ["Java", "Spring Boot", "Spring AOP", "Microservices"]
+    github: "https://github.com/mohanbondu/event-tracking-framework"
+    demo: "https://mohanbondu.github.io/event-tracking-framework"
+    image: "/assets/projects/event-tracking.jpg"
+    featured: false
+    status: "published"
+    startDate: "2023-10"
+  - slug: "reconciliation-service"
+    title: "Reconciliation Service for Variance Analysis"
+    description: "Service performing variance analysis reducing manual BA analysis time by ~69%"
+    longDescription: |
+      Worked on the development of a reconciliation service, which helps to perform variance analysis of the 
+      values produced by the Engine, reducing manual analysis time of BA by ~69% and helping in the assessment 
+      of impact studies for Business, using the Django Framework on the backend.
+      
+      **Key Achievements:**
+      - ~69% reduction in manual analysis time
+      - Variance analysis automation
+      - Django Framework backend
+      - Business impact study assessment
+    stack: ["Python", "Django", "PostgreSQL", "REST API"]
+    github: "https://github.com/mohanbondu/reconciliation-service"
+    demo: "https://mohanbondu.github.io/reconciliation-service"
+    image: "/assets/projects/reconciliation.jpg"
+    featured: false
+    status: "published"
+    startDate: "2023-11"

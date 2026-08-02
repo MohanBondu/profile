@@ -1,0 +1,48 @@
+---
+import { parseYaml, achievementsSchema } from '../../schemas';
+import achievementsRaw from '../../data/achievements.yaml';
+import Card from '../ui/Card.astro';
+import Icon from '../ui/Icon.astro';
+
+const { achievements } = parseYaml(achievementsSchema, achievementsRaw);
+---
+
+<section id="achievements" class="py-20 px-4 bg-gray-50 dark:bg-gray-900">
+  <div class="mx-auto max-w-7xl">
+    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-12 text-center">Achievements & Awards</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {achievements.map(achievement => (
+        <Card class="group">
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
+              <Icon name={achievement.icon} width={28} height={28} class="text-primary-600 dark:text-primary-400" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                {achievement.title}
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">{achievement.organization}</p>
+              <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                {new Date(achievement.date + '-01').toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+              </p>
+              <p class="text-gray-600 dark:text-gray-300 text-sm mt-3 line-clamp-3">
+                {achievement.description}
+              </p>
+              {achievement.url && (
+                <a
+                  href={achievement.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline mt-3"
+                >
+                  Learn more
+                  <Icon name="external-link" width={14} height={14} class="ml-1" />
+                </a>
+              )}
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,119 @@
+---
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+}
+const { title, description = 'Full Stack Developer Portfolio', image = '/assets/og.jpg', type = 'website' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0c4a6e" media="(prefers-color-scheme: dark)" />
+  <link rel="canonical" href={canonicalURL} />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={type} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(image, Astro.site)} />
+  <meta property="og:site_name" content="Portfolio" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content={canonicalURL} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(image, Astro.site)} />
+  <meta name="twitter:site" content="@username" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- DNS Prefetch for external resources -->
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="https://api.netlify.com" />
+
+  <!-- Enable Astro View Transitions for smooth page transitions -->
+  <meta name="astro-view-transitions-enabled" content="true" />
+
+  <!-- View Transitions for smooth page transitions -->
+  <script>
+    if (!document.startViewTransition) {
+      const style = document.createElement('style');
+      style.textContent = `
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+          animation-duration: 300ms;
+          animation-timing-function: ease-in-out;
+        }
+        ::view-transition-old(root) {
+          animation-name: fade-out;
+        }
+        ::view-transition-new(root) {
+          animation-name: fade-in;
+        }
+        @keyframes fade-out {
+          from { opacity: 1; }
+          to { opacity: 0; }
+        }
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  </script>
+</head>
+<body class="flex flex-col min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-200 antialiased">
+  <Header />
+  <main class="flex-grow" id="main-content" style="view-transition-name: main-content;">
+    <slot />
+  </main>
+  <Footer />
+
+  <!-- View Transition polyfill for older browsers -->
+  <script is:inline>
+    if (!document.startViewTransition) {
+      // Fallback for browsers without View Transitions API
+      const links = document.querySelectorAll('a[href^="/"]');
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          if (href && !href.startsWith('#') && !link.hasAttribute('target')) {
+            e.preventDefault();
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 200ms ease-in-out';
+            setTimeout(() => {
+              window.location.href = href;
+            }, 200);
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

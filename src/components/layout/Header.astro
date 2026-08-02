@@ -1,0 +1,101 @@
+---
+import ThemeToggle from '../ui/ThemeToggle.astro';
+import { parseYaml, navigationSchema, socialSchema, profileSchema } from '../../schemas';
+import navRaw from '../../data/navigation.yaml';
+import socialRaw from '../../data/social.yaml';
+import profileRaw from '../../data/profile.yaml';
+import Icon from '../ui/Icon.astro';
+
+const navigation = parseYaml(navigationSchema, navRaw);
+const social = parseYaml(socialSchema, socialRaw);
+const profile = parseYaml(profileSchema, profileRaw);
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm" style="view-transition-name: header;">
+  <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="text-xl font-bold text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+          Portfolio
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex md:items-center md:space-x-8">
+        {navigation.items.map(item => (
+          <a
+            href={item.href}
+            download={item.download}
+            class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+          >
+            {item.label}
+          </a>
+        ))}
+        <!-- Download Resume Icon -->
+        {profile.resume && (
+          <a
+            href={profile.resume}
+            download
+            aria-label="Download Resume"
+            class="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+          >
+            <Icon name="file-text" width={20} height={20} />
+          </a>
+        )}
+        <ThemeToggle />
+      </div>
+
+      <!-- Mobile Navigation Toggle -->
+      <div class="flex md:hidden items-center space-x-4">
+        {profile.resume && (
+          <a
+            href={profile.resume}
+            download
+            aria-label="Download Resume"
+            class="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+          >
+            <Icon name="file-text" width={20} height={20} />
+          </a>
+        )}
+        <ThemeToggle />
+        <button
+          id="mobile-menu-toggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          class="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden pb-4" role="navigation">
+      <div class="flex flex-col space-y-2">
+        {navigation.items.map(item => (
+          <a
+            href={item.href}
+            download={item.download}
+            class="px-2 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', (!isOpen).toString());
+  });
+</script>

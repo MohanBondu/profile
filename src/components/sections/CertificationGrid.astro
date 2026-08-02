@@ -1,0 +1,52 @@
+---
+import { parseYaml, certificationsSchema } from '../../schemas';
+import certsRaw from '../../data/certifications.yaml';
+import Card from '../ui/Card.astro';
+import Badge from '../ui/Badge.astro';
+import Icon from '../ui/Icon.astro';
+
+const { certifications } = parseYaml(certificationsSchema, certsRaw);
+---
+
+<section id="certifications" class="py-20 px-4">
+  <div class="mx-auto max-w-7xl">
+    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-12 text-center">Certifications</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {certifications.map(cert => (
+        <Card class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <Icon name={cert.icon} width={48} height={48} class="text-primary-600 dark:text-primary-400" />
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{cert.name}</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm mb-2">{cert.issuer}</p>
+          <div class="flex flex-wrap items-center justify-center gap-2 mb-4">
+            <Badge variant="info">
+              <Icon name="calendar" width={12} height={12} class="mr-1" />
+              Earned: {new Date(cert.date + '-01').toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+            </Badge>
+            {cert.expiry && (
+              <Badge variant="warning">
+                <Icon name="alert-circle" width={12} height={12} class="mr-1" />
+                Expires: {new Date(cert.expiry + '-01').toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+              </Badge>
+            )}
+          </div>
+          {cert.credentialId && (
+            <p class="text-xs text-gray-500 dark:text-gray-500 mb-3">Credential: {cert.credentialId}</p>
+          )}
+          {cert.url && (
+            <a
+              href={cert.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline"
+            >
+              Verify
+              <Icon name="external-link" width={14} height={14} class="ml-1" />
+            </a>
+          )}
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

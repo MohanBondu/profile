@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import { parseYaml, profileSchema } from '../schemas';
+import profileRaw from '../data/profile.yaml';
+
+const profile = parseYaml(profileSchema, profileRaw);
+---
+
+<BaseLayout title={profile.name} description={profile.tagline}>
+  <Hero />
+</BaseLayout>

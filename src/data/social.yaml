@@ -1,0 +1,10 @@
+links:
+  - platform: "GitHub"
+    url: "https://github.com/mohanbondu"
+    icon: "github"
+  - platform: "LinkedIn"
+    url: "https://linkedin.com/in/mohan-s-s-bondu"
+    icon: "linkedin"
+  - platform: "Email"
+    url: "mailto:srinivasabondu@gmail.com"
+    icon: "mail"

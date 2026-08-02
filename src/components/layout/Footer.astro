@@ -1,0 +1,19 @@
+---
+import { parseYaml, profileSchema } from '../../schemas';
+import profileRaw from '../../data/profile.yaml';
+
+const profile = parseYaml(profileSchema, profileRaw);
+---
+
+<footer class="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950" style="view-transition-name: footer;">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+      <p class="text-sm text-gray-500 dark:text-gray-500">
+        © {new Date().getFullYear()} {profile.name}. All rights reserved.
+      </p>
+      <p class="text-sm text-gray-500 dark:text-gray-500">
+        Built with Astro & Tailwind CSS
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,13 @@
+name: "Mohan Srinivasa Sarma Bondu"
+title: "Software Engineer"
+tagline: "Building scalable, secure, and intelligent systems"
+bio: |
+  Software Engineer at Societe Generale with expertise in microservices architecture, reactive programming, and security. 
+  Proven track record of automating critical financial processes, reducing manual efforts by 70-80%, and improving system fault tolerance by 90%. 
+  University Gold Medalist with specialization in Networking and Security. 
+  Passionate about building resilient systems, AI-driven security tools, and developer productivity frameworks.
+email: "srinivasabondu@gmail.com"
+phone: "+918919072662"
+location: "Bengaluru, Karnataka"
+avatar: "/assets/avatar.jpg"
+resume: "/assets/resume.pdf"

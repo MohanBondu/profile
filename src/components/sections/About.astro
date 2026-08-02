@@ -1,0 +1,31 @@
+---
+import { parseYaml, profileSchema } from '../../schemas';
+import profileRaw from '../../data/profile.yaml';
+
+const profile = parseYaml(profileSchema, profileRaw);
+---
+
+<section id="about" class="py-20 px-4 bg-gray-50 dark:bg-gray-900">
+  <div class="mx-auto max-w-4xl">
+    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">About Me</h2>
+    <div class="prose prose-gray dark:prose-invert max-w-none">
+      {profile.bio.split('\n').map(paragraph => (
+        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">{paragraph}</p>
+      ))}
+    </div>
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+      <div class="p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+        <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">5+</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Years Experience</div>
+      </div>
+      <div class="p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+        <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">20+</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Projects Completed</div>
+      </div>
+      <div class="p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+        <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">10+</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Technologies</div>
+      </div>
+    </div>
+  </div>
+</section>

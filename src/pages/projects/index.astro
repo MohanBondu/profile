@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectGrid from '../../components/sections/ProjectGrid.astro';
+import { parseYaml, profileSchema } from '../../schemas';
+import profileRaw from '../../data/profile.yaml';
+
+const profile = parseYaml(profileSchema, profileRaw);
+---
+
+<BaseLayout title="Projects" description="Browse my portfolio of projects and open-source contributions">
+  <ProjectGrid />
+</BaseLayout>

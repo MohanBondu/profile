@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CertificationGrid from '../../components/sections/CertificationGrid.astro';
+import { parseYaml, profileSchema } from '../../schemas';
+import profileRaw from '../../data/profile.yaml';
+
+const profile = parseYaml(profileSchema, profileRaw);
+---
+
+<BaseLayout title="Certifications" description="My professional certifications and credentials">
+  <CertificationGrid />
+</BaseLayout>

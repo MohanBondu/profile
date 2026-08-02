@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SkillsGrid from '../../components/sections/SkillsGrid.astro';
+import { parseYaml, profileSchema } from '../../schemas';
+import profileRaw from '../../data/profile.yaml';
+
+const profile = parseYaml(profileSchema, profileRaw);
+---
+
+<BaseLayout title="Skills" description="My technical skills and expertise">
+  <SkillsGrid />
+</BaseLayout>

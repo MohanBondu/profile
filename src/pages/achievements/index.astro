@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AchievementGrid from '../../components/sections/AchievementGrid.astro';
+import { parseYaml, profileSchema } from '../../schemas';
+import profileRaw from '../../data/profile.yaml';
+
+const profile = parseYaml(profileSchema, profileRaw);
+---
+
+<BaseLayout title="Achievements" description="My professional achievements and awards">
+  <AchievementGrid />
+</BaseLayout>

@@ -1,0 +1,24 @@
+---
+interface Props {
+  name: string;
+  class?: string;
+  width?: number;
+  height?: number;
+}
+const { name, class: className, width = 24, height = 24 } = Astro.props;
+const isCustom = name.startsWith('custom/');
+---
+
+{isCustom ? (
+  <img
+    src={`/icons/${name.replace('custom/', '')}.svg`}
+    alt=""
+    class={className}
+    width={width}
+    height={height}
+  />
+) : (
+  <svg class={className} width={width} height={height} aria-hidden="true">
+    <use href={`/icons/sprite.svg#${name}`} />
+  </svg>
+)}

@@ -1,0 +1,147 @@
+# Decap CMS Configuration - Local Development
+# Uses local backend with proxy server
+
+local_backend: true
+
+media_folder: public/assets
+public_folder: /assets
+
+site_url: http://localhost:4322
+
+collections:
+  - name: "profile"
+    label: "Profile"
+    files:
+      - name: "profile"
+        label: "Profile Information"
+        file: "src/data/profile.yaml"
+        fields:
+          - {label: "Name", name: "name", widget: "string", required: true}
+          - {label: "Title", name: "title", widget: "string", required: true}
+          - {label: "Tagline", name: "tagline", widget: "string", required: true}
+          - {label: "Bio", name: "bio", widget: "markdown", required: true}
+          - {label: "Email", name: "email", widget: "string", pattern: ["^.+@.+$", "Must be valid email"], required: true}
+          - {label: "Location", name: "location", widget: "string", required: true}
+          - {label: "Avatar", name: "avatar", widget: "image", required: true, media_library: {config: {multiple: false}}}
+          - {label: "Resume", name: "resume", widget: "file", required: false, media_library: {config: {multiple: false}}}
+
+  - name: "skills"
+    label: "Skills"
+    files:
+      - name: "skills"
+        label: "Skills Categories"
+        file: "src/data/skills.yaml"
+        fields:
+          - label: "Categories"
+            name: "categories"
+            widget: "list"
+            required: true
+            fields:
+              - {label: "Category Name", name: "name", widget: "string", required: true}
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                required: true
+                fields:
+                  - {label: "Name", name: "name", widget: "string", required: true}
+                  - {label: "Icon (Iconify name)", name: "icon", widget: "string", required: true, hint: "Find icons at https://icones.js.org/"}
+
+  - name: "social"
+    label: "Social Links"
+    files:
+      - name: "social"
+        label: "Social Links"
+        file: "src/data/social.yaml"
+        fields:
+          - label: "Links"
+            name: "links"
+            widget: "list"
+            required: true
+            fields:
+              - {label: "Platform", name: "platform", widget: "string", required: true}
+              - {label: "URL", name: "url", widget: "string", required: true}
+              - {label: "Icon", name: "icon", widget: "string", required: true, hint: "Iconify name or custom/filename"}
+
+  - name: "navigation"
+    label: "Navigation"
+    files:
+      - name: "navigation"
+        label: "Navigation Items"
+        file: "src/data/navigation.yaml"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            required: true
+            fields:
+              - {label: "Label", name: "label", widget: "string", required: true}
+              - {label: "Href", name: "href", widget: "string", required: true, pattern: ["^/.*$", "Must start with /"]}
+
+  - name: "certifications"
+    label: "Certifications"
+    folder: "src/data"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    identifier_field: "name"
+    fields:
+      - {label: "Name", name: "name", widget: "string", required: true}
+      - {label: "Issuer", name: "issuer", widget: "string", required: true}
+      - {label: "Date (YYYY-MM)", name: "date", widget: "string", required: true, pattern: ["^\\d{4}-\\d{2}$", "Use YYYY-MM format"]}
+      - {label: "Expiry (YYYY-MM)", name: "expiry", widget: "string", required: false, pattern: ["^\\d{4}-\\d{2}$", "Use YYYY-MM format"]}
+      - {label: "Credential ID", name: "credentialId", widget: "string", required: false}
+      - {label: "Verification URL", name: "url", widget: "string", required: false}
+      - {label: "Icon", name: "icon", widget: "string", required: true}
+
+  - name: "achievements"
+    label: "Achievements"
+    folder: "src/data"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    identifier_field: "title"
+    fields:
+      - {label: "Title", name: "title", widget: "string", required: true}
+      - {label: "Organization", name: "organization", widget: "string", required: true}
+      - {label: "Date (YYYY-MM)", name: "date", widget: "string", required: true, pattern: ["^\\d{4}-\\d{2}$", "Use YYYY-MM format"]}
+      - {label: "Description", name: "description", widget: "text", required: true}
+      - {label: "URL", name: "url", widget: "string", required: false}
+      - {label: "Icon", name: "icon", widget: "string", required: true}
+
+  - name: "projects"
+    label: "Projects"
+    folder: "src/data"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "title"
+    fields:
+      - {label: "Slug", name: "slug", widget: "string", required: true, hint: "URL-friendly, unique (kebab-case)"}
+      - {label: "Title", name: "title", widget: "string", required: true}
+      - {label: "Short Description", name: "description", widget: "text", required: true}
+      - {label: "Long Description", name: "longDescription", widget: "markdown", required: true}
+      - {label: "Tech Stack", name: "stack", widget: "list", required: true, field: {label: "Item", name: "item", widget: "string"}}
+      - {label: "GitHub URL", name: "github", widget: "string", required: false}
+      - {label: "Demo URL", name: "demo", widget: "string", required: false}
+      - {label: "Thumbnail", name: "image", widget: "image", required: true}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false}
+      - {label: "Status", name: "status", widget: "select", options: ["draft", "published"], default: "published", required: true}
+      - {label: "Start Date (YYYY-MM)", name: "startDate", widget: "string", required: true, pattern: ["^\\d{4}-\\d{2}$", "Use YYYY-MM format"]}
+      - {label: "End Date (YYYY-MM)", name: "endDate", widget: "string", required: false, pattern: ["^\\d{4}-\\d{2}$", "Use YYYY-MM format"]}
+
+  - name: "experience"
+    label: "Experience"
+    folder: "src/data"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "company"
+    fields:
+      - {label: "Company", name: "company", widget: "string", required: true}
+      - {label: "Role", name: "role", widget: "string", required: true}
+      - {label: "Location", name: "location", widget: "string", required: true}
+      - {label: "Start Date (YYYY-MM)", name: "startDate", widget: "string", required: true, pattern: ["^\\d{4}-\\d{2}$", "Use YYYY-MM format"]}
+      - {label: "End Date (YYYY-MM)", name: "endDate", widget: "string", required: false, pattern: ["^\\d{4}-\\d{2}$", "Use YYYY-MM format"]}
+      - {label: "Type", name: "type", widget: "select", options: ["full-time", "contract", "internship"], default: "full-time", required: true}
+      - {label: "Skills", name: "skills", widget: "list", field: {label: "Skill", name: "item", widget: "string"}}
+      - label: "Highlights"
+        name: "highlights"
+        widget: "list"
+        field: {label: "Highlight", name: "item", widget: "string"}
+      - {label: "Status", name: "status", widget: "select", options: ["draft", "published"], default: "published", required: true}
