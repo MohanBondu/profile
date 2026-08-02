@@ -5,6 +5,7 @@ import profileRaw from '../data/profile.yaml';
 import Icon from '../components/ui/Icon.astro';
 
 const profile = parseYaml(profileSchema, profileRaw);
+const basePath = import.meta.env.BASE_URL || '/';
 ---
 
 <BaseLayout title="404 - Page Not Found" description="Page not found">
@@ -17,14 +18,14 @@ const profile = parseYaml(profileSchema, profileRaw);
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a
-          href="/"
+          href={basePath}
           class="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
         >
           <Icon name="home" width={20} height={20} class="mr-2" />
           Go Home
         </a>
         <a
-          href="/projects"
+          href={`${basePath}/projects`}
           class="inline-flex items-center px-6 py-3 text-base font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
         >
           <Icon name="folder" width={20} height={20} class="mr-2" />
